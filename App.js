@@ -1,13 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import type {Node} from 'react';
+import React,{Component} from 'react';
+import firebase from 'firebase';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,96 +9,68 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import LoginForm from './components/LoginForm';
+import Articles from './components/Articles';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+class App extends Component{
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  state={
+    loggedIn:false
+  }
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  componentDidMount(){
+    var firebaseConfig = {
+      apiKey: "AIzaSyA8bZ34MpV5lhHDddMlkLA-HE_PMmPueNI",
+      authDomain: "fir-native-react.firebaseapp.com",
+      projectId: "fir-native-react",
+      storageBucket: "fir-native-react.appspot.com",
+      messagingSenderId: "323448934026",
+      appId: "1:323448934026:web:7dd33e7e5345c6934de773",
+      measurementId: "G-72Y3W1DR2L"
+    };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+    firebase.initializeApp(firebaseConfig);
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){
+        this.setState({
+          loggedIn:true
+        })
+      }else{
+        this.setState({
+          loggedIn:false
+        })
+      }
+    })
+  }
+
+  renderContent = () => {
+    switch(this.state.loggedIn){
+      case false:
+        return <LoginForm />
+      
+      case true:
+        return <Articles />
+    }
+  }
+
+    render(){
+      return(
+            <View style={styles.container}>
+                    {this.renderContent()}
+            </View>
+      )
+    } 
+  }
+
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  });
 
 export default App;
