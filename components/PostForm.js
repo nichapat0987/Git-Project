@@ -45,6 +45,7 @@ class PostForm extends Component {
 
                 <Button title='SUBMIT' onPress={this.handleSubmit}/>
                 
+
             </View>
         )
     }

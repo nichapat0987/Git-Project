@@ -4,21 +4,17 @@ import {View, Text, StyleSheet, TextInput,TouchableOpacity, Button} from 'react-
 import firebase from 'firebase'
 import PostForm from './PostForm'
 import AllPosts from './AllPosts'
-import postReducer from '../reducers/postReducers'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 
-const store = createStore(postReducer);
 
 class Articles extends Component {
 
     render(){
         return (
         <View style={styles.container}>
-            <Provider store={store}>
+          
                <PostForm/>
-               <AllPosts />
-            </Provider>
+               <Button title="Check" onPress={()=> this.props.navigation.navigate('AllPostsScreen')}/>
+           
             <TouchableOpacity onPress={() => firebase.auth().signOut()}>
             <Text style={styles.LogoutButton}>Logout</Text>
             </TouchableOpacity>

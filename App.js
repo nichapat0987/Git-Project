@@ -12,7 +12,7 @@ import {
 
 import LoginForm from './components/LoginForm';
 import Articles from './components/Articles';
-
+import NavigateHome from './components/NavigateHome';
 
 class App extends Component{
 
@@ -52,7 +52,7 @@ class App extends Component{
         return <LoginForm />
       
       case true:
-        return <Articles />
+        return <NavigateHome />
     }
   }
 
