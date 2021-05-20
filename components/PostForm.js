@@ -30,7 +30,7 @@ class PostForm extends Component {
     }
     render(){
         return(
-            <View styles={styles.container} onPress={this.handleSubmit}>
+            <View  onPress={this.handleSubmit}>
                 <Text style={styles.Header}>Fill In</Text>
                 
                 <TextInput
@@ -52,9 +52,10 @@ class PostForm extends Component {
 }
 
 const styles = StyleSheet.create({
+    
     Header: {
         fontSize: 20
-    }
+    },
 })
 
 export default connect()(PostForm);

@@ -1,9 +1,8 @@
-
 import React, {Component} from 'react'
 import {View, Text, StyleSheet, TextInput,TouchableOpacity, Button} from 'react-native'
 import firebase from 'firebase'
 import PostForm from './PostForm'
-import AllPosts from './AllPosts'
+import Card from '../features/Card'
 
 
 class Articles extends Component {
@@ -11,10 +10,12 @@ class Articles extends Component {
     render(){
         return (
         <View style={styles.container}>
-          
+            <Card>
                <PostForm/>
-               <Button title="Check" onPress={()=> this.props.navigation.navigate('AllPostsScreen')}/>
-           
+            </Card>
+               <Button title="Check Fill in" onPress={()=> this.props.navigation.navigate('AllPostsScreen')}/>
+               <Button title="Go to Crypto" onPress={()=> this.props.navigation.navigate('CryptoScreen')}/>
+               <Button title="See Details" onPress={()=> this.props.navigation.navigate('CryptoDetailScreen')}/>
             <TouchableOpacity onPress={() => firebase.auth().signOut()}>
             <Text style={styles.LogoutButton}>Logout</Text>
             </TouchableOpacity>
