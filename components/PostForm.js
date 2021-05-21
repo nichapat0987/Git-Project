@@ -31,17 +31,24 @@ class PostForm extends Component {
     render(){
         return(
             <View  onPress={this.handleSubmit}>
-                <Text style={styles.Header}>Fill In</Text>
-                
+                <View style={styles.Header}>
+                    <Text style={styles.Headerfont}>Fill In</Text>
+                </View>
+
+                <View style={styles.Formfill}>
                 <TextInput
                     placeholder="Firstname"
+                    style={styles.textinput}
                     onChangeText={(firstname) => this.setState({firstname})}
                 />
-
-                <TextInput
-                    placeholder="Lastname"
-                    onChangeText={(lastname) => this.setState({lastname})}
-                />
+                    <View style={{marginTop: 10}}>
+                    <TextInput
+                        placeholder="Lastname"
+                        style={styles.textinput}
+                        onChangeText={(lastname) => this.setState({lastname})}
+                    />
+                    </View>
+                </View>
 
                 <Button title='SUBMIT' onPress={this.handleSubmit}/>
                 
@@ -52,9 +59,23 @@ class PostForm extends Component {
 }
 
 const styles = StyleSheet.create({
-    
     Header: {
-        fontSize: 20
+        alignItems: 'center',
+        
+    },
+    Headerfont: {
+        fontSize: 25
+    },
+    Formfill: {
+        padding: 20,
+        margin: 10
+    },
+    textinput: {
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#DCD7D6',
+        borderRadius: 12,
+        fontSize: 15,
     },
 })
 

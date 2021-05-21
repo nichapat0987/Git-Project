@@ -4,7 +4,6 @@ import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ArticlesScreen from './Articles';
 import AllPostsScreen from './AllPosts';
-import CryptoScreen from './Crypto';
 import CryptoDetailScreen from './CoinDetailPage';
 
 import postReducer from '../reducers/postReducers'
@@ -32,11 +31,6 @@ function MyStack() {
            <Stack.Screen
             name = "AllPostsScreen"
             component={AllPostsScreen}
-            options={{headerStyle: {height: 0}}}
-           />
-           <Stack.Screen
-            name = "CryptoScreen"
-            component={CryptoScreen}
             options={{headerStyle: {height: 0}}}
            />
            <Stack.Screen

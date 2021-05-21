@@ -73,7 +73,7 @@ const styles= StyleSheet.create({
         paddingLeft: 10,
         marginBottom: 20,
         borderRadius: 5,
-        fontSize: 15
+        fontSize: 15,
     },
     errorText:{
        fontSize:16,

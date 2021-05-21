@@ -7,7 +7,7 @@ class Crypto extends Component {
     render(){
         return (
             <View style={styles.container}>
-            <Text>Crypto</Text>    
+             
             <CoinList/>
             <Button title="Go back" onPress={()=> this.props.navigation.goBack(null)}/>
             </View>

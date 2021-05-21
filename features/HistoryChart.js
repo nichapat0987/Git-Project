@@ -12,13 +12,13 @@ const HistoryChart = ({data}) => {
     return (
       
         <View style={styles.container}>
-        <VictoryChart  width={350} theme={HistoryStyles}>
+        <VictoryChart  width={350} theme={HistoryStyles} scale={{x: "time"}}>
           <VictoryLine data={day} x="t" y="y" />
           <VictoryAxis 
-          dependentAxis tickFormat={(y) => y}
+          dependentAxis tickFormat={(y) => `${y}`}
           />
           <VictoryAxis 
-          tickFormat={(x) => new Date(x).getHours() + ':' + new Date(x).getMinutes()}
+          label ="Time"
           />
         </VictoryChart>
         </View>
